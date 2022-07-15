@@ -17,7 +17,13 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.blue.shade300,
         appBar: AppBar(
           backgroundColor: Colors.blue.shade900,
-          title: const Text('Ask me anything'),
+          title: const Text(
+            'Ask me anything',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 30.0,
+            ),
+          ),
         ),
         body: const Center(
           child: MyHomePage(),
@@ -37,7 +43,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _choice = 0;
 
-  void _incrementCounter() {
+  void _getAnswer() {
     setState(() {
       _choice = Random().nextInt(5);
     });
@@ -47,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Expanded(
       child: TextButton(
-        onPressed: _incrementCounter,
+        onPressed: _getAnswer,
         child: Image.asset('images/ball$_choice.png'),
       ),
     );
