@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         ),
         body: const Center(
           child: DiceRow(
-            dices: 2,
+            dices: 1,
           ),
         ),
       ),
@@ -57,15 +57,31 @@ class _DiceRowState extends State<DiceRow> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: List<Widget>.generate(
-        widget.dices,
-        (index) => Expanded(
+      children: buildList(),
+    );
+  }
+
+  List<Widget> buildList() {
+    List<Widget> list = [];
+    // List<Widget> list =  List<Widget>.generate(
+    //   widget.dices,
+    //   (index) => Expanded(
+    //     child: TextButton(
+    //       onPressed: _castDices,
+    //       child: Image.asset('images/dice${_diceNumbers[index]}.png'),
+    //     ),
+    //   ),
+    // );
+    for (int i = 0; i < widget.dices; i++) {
+      list.add(
+        Expanded(
           child: TextButton(
             onPressed: _castDices,
-            child: Image.asset('images/dice${_diceNumbers[index]}.png'),
+            child: Image.asset('images/dice${_diceNumbers[i]}.png'),
           ),
         ),
-      ),
-    );
+      );
+    }
+    return list;
   }
 }
