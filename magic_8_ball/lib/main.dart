@@ -20,10 +20,10 @@ class MyApp extends StatelessWidget {
           title: const Text(
             'Ask me anything',
             style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 30.0,
+              fontSize: 40.0,
             ),
           ),
+          centerTitle: true,
         ),
         body: const Center(
           child: MyHomePage(),
@@ -51,11 +51,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: TextButton(
-        onPressed: _getAnswer,
-        child: Image.asset('images/ball$_choice.png'),
-      ),
+    return TextButton(
+      onPressed: _getAnswer,
+      child: Image.asset('images/ball$_choice.png'),
     );
   }
 }
