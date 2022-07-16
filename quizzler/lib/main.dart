@@ -46,18 +46,23 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<bool> hits = [];
-  late int questionNumber;
+  List<Icon> hits = [];
+  int questionNumber = 0;
 
   void _answer(bool answer) {
     setState(() {
-      hits.add(answer == widget.questions[questionNumber].answer);
+      bool result = answer == widget.questions[questionNumber].answer;
+      hits.add(Icon(
+        result ? Icons.done : Icons.close,
+        color: result ? Colors.green : Colors.red,
+      ));
+      questionNumber++;
+      if (questionNumber == widget.questions.length) questionNumber = 0;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    questionNumber = Random().nextInt(widget.questions.length);
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -122,13 +127,7 @@ class _QuizPageState extends State<QuizPage> {
         ),
         //TODO: Add a Row here as your score keeper !!! DONE
         Row(
-          children: List.generate(
-            hits.length,
-            (index) => Icon(
-              hits[index] ? Icons.done : Icons.close,
-              color: hits[index] ? Colors.green : Colors.red,
-            ),
-          ),
+          children: hits,
         ),
       ],
     );
