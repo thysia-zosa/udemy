@@ -1,17 +1,10 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  return runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.red,
         appBar: AppBar(
@@ -19,53 +12,52 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.red,
         ),
         body: const Center(
-          child: DiceRow(
-            dices: 2,
+          child: DicePage(
+            diceCount: 2,
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
 }
 
-class DiceRow extends StatefulWidget {
-  final int dices;
+class DicePage extends StatefulWidget {
+  const DicePage({Key? key, required this.diceCount}) : super(key: key);
+  final int diceCount;
 
-  const DiceRow({
-    Key? key,
-    required this.dices,
-  }) : super(key: key);
   @override
-  State<DiceRow> createState() => _DiceRowState();
+  State<DicePage> createState() => _DicePageState();
 }
 
-class _DiceRowState extends State<DiceRow> {
-  late List<int> _diceNumbers;
+class _DicePageState extends State<DicePage> {
+  List<int>? diceNumbers;
 
-  _DiceRowState() {
-    _diceNumbers = List.filled(widget.dices, 1);
-  }
-
-  void _castDices() {
+  void changeDiceFace() {
     setState(() {
-      for (int i = 0; i < widget.dices; i++) {
-        _diceNumbers[i] = Random().nextInt(6) + 1;
+      for (int i = 0; i < widget.diceCount; i++) {
+        diceNumbers![i] = Random().nextInt(6) + 1;
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: List<Widget>.generate(
-        widget.dices,
-        (index) => Expanded(
+    diceNumbers ??= List<int>.filled(widget.diceCount, 1);
+    List<Widget> rowElements = [];
+    for (int i = 0; i < widget.diceCount; i++) {
+      rowElements.add(
+        Expanded(
           child: TextButton(
-            onPressed: _castDices,
-            child: Image.asset('images/dice${_diceNumbers[index]}.png'),
+            onPressed: changeDiceFace,
+            child: Image.asset(
+              'images/dice${diceNumbers![i]}.png',
+            ),
           ),
         ),
-      ),
+      );
+    }
+    return Row(
+      children: rowElements,
     );
   }
 }
