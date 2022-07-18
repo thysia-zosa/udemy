@@ -79,10 +79,9 @@ class _StoryPageState extends State<StoryPage> {
                     Colors.blue,
                   ),
                 ),
-                child: const Text(
-                  // TODO: Step 14 - Use the storyBrain to get the text for choice 2.
-                  'Choice 2',
-                  style: TextStyle(
+                child: Text(
+                  widget.storyBrain.getChoice2(),
+                  style: const TextStyle(
                     fontSize: 20.0,
                   ),
                 ),
