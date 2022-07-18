@@ -13,6 +13,13 @@ class _StoryPageState extends State<StoryPage> {
     return Scaffold(
       body: Container(
         // TODO: Step 1 - Add background.png to this Container as a background image.
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+              'images/background.png',
+            ),
+          ),
+        ),
         padding: const EdgeInsets.symmetric(
           vertical: 50.0,
           horizontal: 15.0,
