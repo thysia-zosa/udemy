@@ -8,9 +8,12 @@ class Story {
   /// stores the text for choice 2.
   final String choice2;
 
+  Map<int, int>? next;
+
   Story({
     required this.storyTitle,
     required this.choice1,
     required this.choice2,
+    this.next,
   });
 }
