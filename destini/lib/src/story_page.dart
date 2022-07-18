@@ -18,10 +18,10 @@ class _StoryPageState extends State<StoryPage> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(
-              'images/background.png',
-            ),
-          ),
+              image: AssetImage(
+                'images/background.png',
+              ),
+              fit: BoxFit.cover),
         ),
         padding: const EdgeInsets.symmetric(
           vertical: 50.0,
@@ -58,6 +58,7 @@ class _StoryPageState extends State<StoryPage> {
                   widget.storyBrain.getChoice1(),
                   style: const TextStyle(
                     fontSize: 20.0,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -83,6 +84,7 @@ class _StoryPageState extends State<StoryPage> {
                   widget.storyBrain.getChoice2(),
                   style: const TextStyle(
                     fontSize: 20.0,
+                    color: Colors.white,
                   ),
                 ),
               ),
