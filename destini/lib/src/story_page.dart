@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'story_brain.dart';
+
 class StoryPage extends StatefulWidget {
-  const StoryPage({Key? key}) : super(key: key);
+  final StoryBrain storyBrain = StoryBrain();
+
+  StoryPage({Key? key}) : super(key: key);
 
   @override
   State<StoryPage> createState() => _StoryPageState();
@@ -27,13 +31,12 @@ class _StoryPageState extends State<StoryPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            const Expanded(
+            Expanded(
               flex: 12,
               child: Center(
                 child: Text(
-                  // TODO: Step 10 - use the storyBrain to get the first story title and display it in this Text Widget.
-                  'Story text will go here.',
-                  style: TextStyle(
+                  widget.storyBrain.getStory(),
+                  style: const TextStyle(
                     fontSize: 25.0,
                   ),
                 ),
