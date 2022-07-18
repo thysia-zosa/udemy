@@ -46,8 +46,8 @@ class _StoryPageState extends State<StoryPage> {
               flex: 2,
               child: TextButton(
                 onPressed: () {
-                  //Choice 1 made by user.
-                  // TODO: Step 18 - Call the nextStory() method from storyBrain and pass the number 1 as the choice made by the user.
+                  // Choice 1 made by user.
+                  widget.storyBrain.nextStory(1);
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
