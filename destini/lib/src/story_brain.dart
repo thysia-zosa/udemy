@@ -1,10 +1,9 @@
-List<Story> _storyData = [
+class StoryBrain {
 // TODO: Step 6 - import the story.dart file into this file.
-
-// TODO: Step 5 - Create a new class called StoryBrain.
 
 // TODO: Step 7 - Uncomment the lines below to include storyData as a private property in StoryBrain. Hint: You might need to change something in story.dart to make this work.
 
+// List<Story> _storyData = [
 //  Story(
 //      storyTitle:
 //      'Your car has blown a tire on a winding road in the middle of nowhere with no cell phone reception. You decide to hitchhike. A rusty pickup truck rumbles to a stop next to you. A man with a wide brimmed hat with soulless eyes opens the passenger door for you and asks: "Need a ride, boy?".',
@@ -34,6 +33,7 @@ List<Story> _storyData = [
 //      'You bond with the murderer while crooning verses of "Can you feel the love tonight". He drops you off at the next town. Before you go he asks you if you know any good places to dump bodies. You reply: "Try the pier".',
 //      choice1: 'Restart',
 //      choice2: '')
+// ];
 
 // TODO: Step 23 - Use the storyNumber property inside getStory(), getChoice1() and getChoice2() so that it gets the updated story and choices rather than always just the first (0th) one.
 
@@ -56,4 +56,4 @@ List<Story> _storyData = [
 // TODO: Step 22 - In nextStory() if the storyNumber is equal to 3 or 4 or 5, that means it's the end of the game and it should call a method called restart() that resets the storyNumber to 0.
 
 // TODO: Step 27 - Create a method called buttonShouldBeVisible() which checks to see if storyNumber is 0 or 1 or 2 (when both buttons should show choices) and return true if that is the case, else it should return false.
-];
+}
