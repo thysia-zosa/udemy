@@ -1,9 +1,12 @@
+import 'package:destini/src/story_brain.dart';
 import 'package:flutter/material.dart';
 
 import 'story_page.dart';
 
 class Destini extends StatelessWidget {
-  const Destini({Key? key}) : super(key: key);
+  Destini({Key? key}) : super(key: key);
+
+  final StoryBrain storyBrain = StoryBrain();
 
   @override
   Widget build(BuildContext context) {
@@ -12,5 +15,4 @@ class Destini extends StatelessWidget {
       home: const StoryPage(),
     );
   }
-// TODO: Step 9 - Create a new storyBrain object from the StoryBrain class.
 }
