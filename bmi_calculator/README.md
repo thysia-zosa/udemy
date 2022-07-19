@@ -1,19 +1,4 @@
-# bmi_calculator
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# BMI Calculator
 
 ## Specs
 
@@ -21,15 +6,12 @@ samples, guidance on mobile development, and a full API reference.
 
 ### Colors
 
-- primary: ff0a0e21
-- scaffold background: ff0a0e21
+- primary, scaffold background: ff0a0e21
 - normal: ff1d1e33
 - inactive: ff111328
-- bottomcontainer: ffeb1555
-- font: ff8d8e98
-- slider inactive: ff8d8e98
+- bottomcontainer, slider thumb: ffeb1555
+- font, slider inactive: ff8d8e98
 - slider active: white
-- thumb: ffeb1555
 - overlay: 29eb1555
 - icon button fill: ff4c4f5e
 
@@ -90,3 +72,25 @@ samples, guidance on mobile development, and a full API reference.
 
 - tight constraints 56
 - circle border
+
+## Planung
+
+### Screens
+
+- input screen
+- result screen
+
+### Widgets
+
+- bmi card
+- bottom button
+- icon button
+- icon card
+
+### Models
+
+- bmi person
+
+### Other
+
+- consts
