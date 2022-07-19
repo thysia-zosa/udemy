@@ -6,24 +6,24 @@
 
 ### Colors
 
-- primary, scaffold background: ff0a0e21
-- normal: ff1d1e33
-- inactive: ff111328
-- bottomcontainer, slider thumb: ffeb1555
-- font, slider inactive: ff8d8e98
+- primary, scaffold background: ff0a0e21 (darkPurple)
+- normal: ff1d1e33 (purple)
+- inactive: ff111328 (lightpurple)
+- bottomcontainer, slider thumb: ffeb1555 (red)
+- font, slider inactive: ff8d8e98 (lightgrey)
 - slider active: white
-- overlay: 29eb1555
-- icon button fill: ff4c4f5e
+- overlay: 29eb1555 (wine)
+- icon button fill: ff4c4f5e (darkgrey)
 
 ### Texts
 
 - label: 18, colored
 - number: 50, bold
-- large button: 25, bold
 - title: 50, bold
+- large button: 25, bold
 - result: 22, bold, colored
-- bmi: 100, bold
 - body: 22
+- bmi: 100, bold
 
 ### BMI
 
