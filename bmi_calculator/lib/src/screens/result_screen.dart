@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/src/models/bmi_result.dart';
 import 'package:flutter/material.dart';
 
 import '../consts.dart';
@@ -6,7 +7,12 @@ import '../widgets/bmi_bottom_button.dart';
 import '../widgets/bmi_card.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({Key? key}) : super(key: key);
+  const ResultScreen({
+    Key? key,
+    required this.bmiResult,
+  }) : super(key: key);
+
+  final BmiResult bmiResult;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +21,7 @@ class ResultScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Expanded(
+          const Expanded(
             child: Center(
               child: Text(
                 'Your Result',
@@ -24,27 +30,29 @@ class ResultScreen extends StatelessWidget {
             ),
           ),
           BmiCard(
+              flex: 5,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    'a',
+                    bmiResult.title.toUpperCase(),
                     style: Texts.result,
                   ),
                   Text(
-                    'b',
+                    bmiResult.bmi,
                     style: Texts.veryBig,
                   ),
                   Text(
-                    'c',
+                    bmiResult.explanation,
                     style: Texts.body,
                   ),
                 ],
-              ),
-              flex: 5),
+              )),
           BmiBottomButton(
             text: 're-calculate',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ],
       ),

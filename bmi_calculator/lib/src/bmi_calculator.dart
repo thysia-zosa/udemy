@@ -24,8 +24,7 @@ class BmiCalculator extends StatelessWidget {
           thumbColor: Cols.red,
         ),
       ),
-      // home: const InputScreen(),
-      home: const ResultScreen(),
+      home: const InputScreen(),
     );
   }
 }
