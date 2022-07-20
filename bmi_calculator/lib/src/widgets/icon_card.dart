@@ -9,27 +9,32 @@ class IconCard extends StatelessWidget {
     Key? key,
     required this.icon,
     required this.text,
+    required this.onPressed,
   }) : super(key: key);
 
   final IconData icon;
   final String text;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Icon(
-          icon,
-          size: _iconSize,
-        ),
-        SizedBox(
-          height: _distance,
-        ),
-        Text(
-          text,
-          style: Texts.label,
-        ),
-      ],
+    return GestureDetector(
+      onTap: onPressed,
+      child: Column(
+        children: [
+          Icon(
+            icon,
+            size: _iconSize,
+          ),
+          SizedBox(
+            height: _distance,
+          ),
+          Text(
+            text,
+            style: Texts.label,
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,3 +1,9 @@
+import 'package:bmi_calculator/src/consts.dart';
+import 'package:bmi_calculator/src/models/gender.dart';
+import 'package:bmi_calculator/src/widgets/bottom_button.dart';
+import 'package:bmi_calculator/src/widgets/icon_card.dart';
+
+import '../models/bmi_person.dart';
 import '../widgets/bmi_card.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +17,9 @@ class InputScreen extends StatefulWidget {
 }
 
 class _InputScreenState extends State<InputScreen> {
+  BmiPerson person = BmiPerson();
+  void _calculate() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,37 +32,61 @@ class _InputScreenState extends State<InputScreen> {
           Expanded(
             child: Row(
               children: [
-                BmiCard(),
-                BmiCard(),
+                _maleCard(),
+                _femaleCard(),
               ],
             ),
           ),
-          BmiCard(),
+          _sliderCard(),
           Expanded(
             child: Row(
               children: [
-                BmiCard(),
-                BmiCard(),
+                _weightCard(),
+                _ageCard(),
               ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(
-              top: InputScreen._footerTopMargin,
-            ),
-            width: double.infinity,
-            color: Colors.red.shade900,
-            child: TextButton(
-              child: Text(
-                'CALCULATE',
-                style: TextStyle(
-                  fontSize: 20.0,
-                ),
-              ),
-              onPressed: () {},
-            ),
+          BottomButton(
+            text: 'calculate'.toUpperCase(),
+            onPressed: _calculate,
           ),
         ],
+      ),
+    );
+  }
+
+  BmiCard _ageCard() => BmiCard();
+
+  BmiCard _weightCard() => BmiCard();
+
+  BmiCard _sliderCard() => BmiCard();
+
+  BmiCard _femaleCard() {
+    return BmiCard(
+      color: person.gender == Gender.female ? Cols.purple : Cols.lightPurple,
+      child: IconCard(
+        onPressed: () {
+          setState(() {
+            person.gender = Gender.female;
+          });
+        },
+        icon: Ikons.female,
+        text: 'female'.toUpperCase(),
+      ),
+    );
+  }
+
+  BmiCard _maleCard() {
+    return BmiCard(
+      color: person.gender == Gender.male ? Cols.purple : Cols.lightPurple,
+      child: IconCard(
+        onPressed: () {
+          setState(() {
+            person.gender = Gender.male;
+          });
+        },
+        icon: Ikons.male,
+        text: 'male'.toUpperCase(),
       ),
     );
   }
