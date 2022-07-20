@@ -1,12 +1,12 @@
-import 'package:bmi_calculator/src/consts.dart';
-import 'package:bmi_calculator/src/models/gender.dart';
-import 'package:bmi_calculator/src/widgets/bmi_bottom_button.dart';
-import 'package:bmi_calculator/src/widgets/bmi_icon_button.dart';
-import 'package:bmi_calculator/src/widgets/bmi_icon_card.dart';
-
-import '../models/bmi_person.dart';
-import '../widgets/bmi_card.dart';
 import 'package:flutter/material.dart';
+
+import '../consts.dart';
+import '../models/bmi_person.dart';
+import '../models/gender.dart';
+import '../widgets/bmi_bottom_button.dart';
+import '../widgets/bmi_card.dart';
+import '../widgets/bmi_icon_button.dart';
+import '../widgets/bmi_icon_card.dart';
 
 class InputScreen extends StatefulWidget {
   const InputScreen({Key? key}) : super(key: key);
@@ -89,7 +89,7 @@ class _InputScreenState extends State<InputScreen> {
                   },
                   enabled: value > minValue,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 15.0,
                 ),
                 BmiIconButton(
@@ -125,43 +125,44 @@ class _InputScreenState extends State<InputScreen> {
         () => person.weight--,
       );
 
-  BmiCard _sliderCard() => BmiCard(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'height'.toUpperCase(),
-              style: Texts.label,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.baseline,
-              textBaseline: TextBaseline.alphabetic,
-              children: [
-                Text(
-                  person.height.toStringAsFixed(0),
-                  style: Texts.big,
-                ),
-                Text(
-                  'cm',
-                  style: Texts.label,
-                ),
-              ],
-            ),
-            Slider(
-              value: person.height,
-              onChanged: (double value) {
-                setState(() {
-                  person.height = value;
-                });
-              },
-              min: 120.0,
-              max: 250.0,
-              // divisions: 130,
-            ),
-          ],
-        ),
-      );
+  BmiCard _sliderCard() {
+    return BmiCard(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'height'.toUpperCase(),
+            style: Texts.label,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.alphabetic,
+            children: [
+              Text(
+                person.height.toStringAsFixed(0),
+                style: Texts.big,
+              ),
+              const Text(
+                'cm',
+                style: Texts.label,
+              ),
+            ],
+          ),
+          Slider(
+            value: person.height,
+            onChanged: (double value) {
+              setState(() {
+                person.height = value;
+              });
+            },
+            min: 120.0,
+            max: 250.0,
+          ),
+        ],
+      ),
+    );
+  }
 
   BmiCard _genderCard(
     Gender gender,

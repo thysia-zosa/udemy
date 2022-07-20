@@ -19,7 +19,7 @@ class BmiCard extends StatelessWidget {
       child: GestureDetector(
         onTap: onPressed,
         child: Container(
-          margin: EdgeInsets.all(15.0),
+          margin: const EdgeInsets.all(15.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             color: color,

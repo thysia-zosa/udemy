@@ -18,14 +18,15 @@ class BmiBottomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: onPressed,
       child: Container(
-        margin: EdgeInsets.only(
+        margin: const EdgeInsets.only(
           top: _marginTop,
         ),
         width: double.infinity,
         color: Cols.red,
         height: _height,
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           bottom: _paddingBottom,
         ),
         child: Center(
@@ -35,7 +36,6 @@ class BmiBottomButton extends StatelessWidget {
           ),
         ),
       ),
-      onTap: onPressed,
     );
   }
 }

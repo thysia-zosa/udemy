@@ -23,7 +23,7 @@ class IconCard extends StatelessWidget {
           icon,
           size: _iconSize,
         ),
-        SizedBox(
+        const SizedBox(
           height: _distance,
         ),
         Text(

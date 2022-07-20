@@ -21,12 +21,12 @@ class BmiIconButton extends StatelessWidget {
       elevation: 10.0,
       onPressed: enabled ? onPressed : null,
       fillColor: enabled ? Cols.darkGrey : Cols.lightGrey,
-      child: Icon(icon),
-      constraints: BoxConstraints.tightFor(
+      constraints: const BoxConstraints.tightFor(
         width: _size,
         height: _size,
       ),
-      shape: CircleBorder(),
+      shape: const CircleBorder(),
+      child: Icon(icon),
     );
   }
 }
