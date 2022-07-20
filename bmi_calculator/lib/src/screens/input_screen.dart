@@ -29,6 +29,7 @@ class _InputScreenState extends State<InputScreen> {
         centerTitle: true,
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Row(
@@ -124,7 +125,43 @@ class _InputScreenState extends State<InputScreen> {
         () => person.weight--,
       );
 
-  BmiCard _sliderCard() => BmiCard();
+  BmiCard _sliderCard() => BmiCard(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'height'.toUpperCase(),
+              style: Texts.label,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              textBaseline: TextBaseline.alphabetic,
+              children: [
+                Text(
+                  person.height.toStringAsFixed(0),
+                  style: Texts.big,
+                ),
+                Text(
+                  'cm',
+                  style: Texts.label,
+                ),
+              ],
+            ),
+            Slider(
+              value: person.height,
+              onChanged: (double value) {
+                setState(() {
+                  person.height = value;
+                });
+              },
+              min: 120.0,
+              max: 250.0,
+              // divisions: 130,
+            ),
+          ],
+        ),
+      );
 
   BmiCard _genderCard(
     Gender gender,
