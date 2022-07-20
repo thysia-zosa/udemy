@@ -7,15 +7,18 @@ class BmiCard extends StatelessWidget {
     this.child,
     this.onPressed,
     this.color = Cols.lightPurple,
+    this.flex = 1,
   }) : super(key: key);
 
   final Widget? child;
   final Color color;
   final VoidCallback? onPressed;
+  final int flex;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
+      flex: flex,
       child: GestureDetector(
         onTap: onPressed,
         child: Container(
