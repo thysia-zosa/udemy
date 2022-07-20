@@ -18,6 +18,7 @@ class BmiIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
+      elevation: 10.0,
       onPressed: enabled ? onPressed : null,
       fillColor: enabled ? Cols.darkGrey : Cols.lightGrey,
       child: Icon(icon),
@@ -25,6 +26,7 @@ class BmiIconButton extends StatelessWidget {
         width: _size,
         height: _size,
       ),
+      shape: CircleBorder(),
     );
   }
 }

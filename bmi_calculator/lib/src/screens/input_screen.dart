@@ -1,7 +1,8 @@
 import 'package:bmi_calculator/src/consts.dart';
 import 'package:bmi_calculator/src/models/gender.dart';
-import 'package:bmi_calculator/src/widgets/bottom_button.dart';
-import 'package:bmi_calculator/src/widgets/icon_card.dart';
+import 'package:bmi_calculator/src/widgets/bmi_bottom_button.dart';
+import 'package:bmi_calculator/src/widgets/bmi_icon_button.dart';
+import 'package:bmi_calculator/src/widgets/bmi_icon_card.dart';
 
 import '../models/bmi_person.dart';
 import '../widgets/bmi_card.dart';
@@ -46,7 +47,7 @@ class _InputScreenState extends State<InputScreen> {
               ],
             ),
           ),
-          BottomButton(
+          BmiBottomButton(
             text: 'calculate'.toUpperCase(),
             onPressed: _calculate,
           ),
@@ -55,9 +56,73 @@ class _InputScreenState extends State<InputScreen> {
     );
   }
 
-  BmiCard _ageCard() => BmiCard();
+  BmiCard _twoButtonCard(
+    String title,
+    int value,
+    int minValue,
+    int maxValue,
+    VoidCallback add,
+    VoidCallback subtract,
+  ) =>
+      BmiCard(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              title.toUpperCase(),
+              style: Texts.label,
+            ),
+            Text(
+              value.toString(),
+              style: Texts.big,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                BmiIconButton(
+                  icon: Ikons.minus,
+                  onPressed: () {
+                    setState(() {
+                      subtract();
+                    });
+                  },
+                  enabled: value > minValue,
+                ),
+                SizedBox(
+                  width: 15.0,
+                ),
+                BmiIconButton(
+                  icon: Ikons.plus,
+                  onPressed: () {
+                    setState(() {
+                      add();
+                    });
+                  },
+                  enabled: value < maxValue,
+                ),
+              ],
+            )
+          ],
+        ),
+      );
 
-  BmiCard _weightCard() => BmiCard();
+  BmiCard _ageCard() => _twoButtonCard(
+        'age',
+        person.age,
+        0,
+        130,
+        () => person.age++,
+        () => person.age--,
+      );
+
+  BmiCard _weightCard() => _twoButtonCard(
+        'weight',
+        person.weight,
+        20,
+        200,
+        () => person.weight++,
+        () => person.weight--,
+      );
 
   BmiCard _sliderCard() => BmiCard();
 
