@@ -26,6 +26,9 @@ abstract class Cols {
 
   /// icon button fill
   static const Color darkGrey = Color(0xff4c4f5e);
+
+  /// result
+  static const Color green = Color(0xff24d876);
 }
 
 abstract class Texts {
@@ -40,7 +43,7 @@ abstract class Texts {
     fontWeight: FontWeight.bold,
   );
 
-  /// large butoon
+  /// large button
   static const button = TextStyle(
     fontSize: 25.0,
     fontWeight: FontWeight.bold,
@@ -48,7 +51,7 @@ abstract class Texts {
   static const result = TextStyle(
     fontSize: 22.0,
     fontWeight: FontWeight.bold,
-    color: Cols.lightGrey,
+    color: Cols.green,
   );
   static const body = TextStyle(
     fontSize: 22.0,
