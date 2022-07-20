@@ -1,11 +1,16 @@
 import '../widgets/bmi_card.dart';
 import 'package:flutter/material.dart';
 
-class InputScreen extends StatelessWidget {
+class InputScreen extends StatefulWidget {
   const InputScreen({Key? key}) : super(key: key);
 
   static const _footerTopMargin = 10.0;
 
+  @override
+  State<InputScreen> createState() => _InputScreenState();
+}
+
+class _InputScreenState extends State<InputScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +39,7 @@ class InputScreen extends StatelessWidget {
           ),
           Container(
             margin: EdgeInsets.only(
-              top: _footerTopMargin,
+              top: InputScreen._footerTopMargin,
             ),
             width: double.infinity,
             color: Colors.red.shade900,

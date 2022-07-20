@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /// colors
 abstract class Cols {
@@ -15,7 +16,7 @@ abstract class Cols {
 abstract class Texts {
   static const label = TextStyle(
     fontSize: 18.0,
-    color: Cols.purple,
+    color: Cols.lightGrey,
   );
   static const big = TextStyle(
     fontSize: 50.0,
@@ -28,7 +29,7 @@ abstract class Texts {
   static const result = TextStyle(
     fontSize: 22.0,
     fontWeight: FontWeight.bold,
-    color: Cols.purple,
+    color: Cols.lightGrey,
   );
   static const body = TextStyle(
     fontSize: 22.0,
@@ -37,4 +38,11 @@ abstract class Texts {
     fontSize: 100.0,
     fontWeight: FontWeight.bold,
   );
+}
+
+abstract class Ikons {
+  static const plus = FontAwesomeIcons.plus;
+  static const minus = FontAwesomeIcons.minus;
+  static const male = FontAwesomeIcons.mars;
+  static const female = FontAwesomeIcons.venus;
 }
