@@ -5,8 +5,8 @@ const _height = 80.0;
 const _marginTop = 10.0;
 const _paddingBottom = 20.0;
 
-class BottomButton extends StatelessWidget {
-  const BottomButton({
+class BmiBottomButton extends StatelessWidget {
+  const BmiBottomButton({
     Key? key,
     required this.text,
     required this.onPressed,

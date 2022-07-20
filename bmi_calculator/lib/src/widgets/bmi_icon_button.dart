@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 const double _size = 56.0;
 
-class IconButton extends StatelessWidget {
-  const IconButton({
+class BmiIconButton extends StatelessWidget {
+  const BmiIconButton({
     Key? key,
     required this.icon,
     required this.onPressed,
