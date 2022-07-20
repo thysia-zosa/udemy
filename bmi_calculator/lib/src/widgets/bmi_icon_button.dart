@@ -1,7 +1,7 @@
 import 'package:bmi_calculator/src/consts.dart';
 import 'package:flutter/material.dart';
 
-const double _size = 56.0;
+const double _size = 45.0;
 
 class BmiIconButton extends StatelessWidget {
   const BmiIconButton({

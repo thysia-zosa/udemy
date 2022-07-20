@@ -30,13 +30,13 @@ abstract class Cols {
 
 abstract class Texts {
   static const label = TextStyle(
-    fontSize: 18.0,
+    fontSize: 16.0,
     color: Cols.lightGrey,
   );
 
   /// number, title
   static const big = TextStyle(
-    fontSize: 50.0,
+    fontSize: 40.0,
     fontWeight: FontWeight.bold,
   );
 
