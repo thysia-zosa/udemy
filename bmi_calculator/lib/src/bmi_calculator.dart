@@ -1,10 +1,11 @@
 import 'package:bmi_calculator/src/consts.dart';
+import 'package:bmi_calculator/src/screens/result_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/input_screen.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class BmiCalculator extends StatelessWidget {
+  const BmiCalculator({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
           thumbColor: Cols.red,
         ),
       ),
-      home: const InputScreen(),
+      // home: const InputScreen(),
+      home: const ResultScreen(),
     );
   }
 }
