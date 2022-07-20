@@ -20,6 +20,7 @@ class InputScreen extends StatefulWidget {
 class _InputScreenState extends State<InputScreen> {
   BmiPerson person = BmiPerson();
   void _calculate() {
+    if (person.gender == null) return;
     Navigator.push(
       context,
       MaterialPageRoute(

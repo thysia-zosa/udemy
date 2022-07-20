@@ -31,6 +31,7 @@ class ResultScreen extends StatelessWidget {
           ),
           BmiCard(
               flex: 5,
+              horizontalPadding: 15.0,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -45,6 +46,7 @@ class ResultScreen extends StatelessWidget {
                   Text(
                     bmiResult.explanation,
                     style: Texts.body,
+                    textAlign: TextAlign.center,
                   ),
                 ],
               )),
