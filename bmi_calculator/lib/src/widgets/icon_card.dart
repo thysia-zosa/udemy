@@ -1,7 +1,7 @@
 import 'package:bmi_calculator/src/consts.dart';
 import 'package:flutter/material.dart';
 
-const double _iconSize = 80.0;
+const double _iconSize = 60.0;
 const double _distance = 15.0;
 
 class IconCard extends StatelessWidget {
@@ -21,6 +21,7 @@ class IconCard extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
             icon,

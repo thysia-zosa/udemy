@@ -10,8 +10,6 @@ import 'package:flutter/material.dart';
 class InputScreen extends StatefulWidget {
   const InputScreen({Key? key}) : super(key: key);
 
-  static const _footerTopMargin = 10.0;
-
   @override
   State<InputScreen> createState() => _InputScreenState();
 }
@@ -24,7 +22,9 @@ class _InputScreenState extends State<InputScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI CALCULATOR'),
+        title: Text(
+          'BMI calculator'.toUpperCase(),
+        ),
         centerTitle: true,
       ),
       body: Column(
@@ -63,7 +63,7 @@ class _InputScreenState extends State<InputScreen> {
 
   BmiCard _femaleCard() {
     return BmiCard(
-      color: person.gender == Gender.female ? Cols.purple : Cols.lightPurple,
+      color: person.gender == Gender.female ? Cols.lightPurple : Cols.purple,
       child: IconCard(
         onPressed: () {
           setState(() {
@@ -78,7 +78,7 @@ class _InputScreenState extends State<InputScreen> {
 
   BmiCard _maleCard() {
     return BmiCard(
-      color: person.gender == Gender.male ? Cols.purple : Cols.lightPurple,
+      color: person.gender == Gender.male ? Cols.lightPurple : Cols.purple,
       child: IconCard(
         onPressed: () {
           setState(() {

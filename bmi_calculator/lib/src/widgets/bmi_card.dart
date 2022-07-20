@@ -5,7 +5,7 @@ class BmiCard extends StatelessWidget {
   const BmiCard({
     Key? key,
     this.child,
-    this.color = Cols.purple,
+    this.color = Cols.lightPurple,
   }) : super(key: key);
 
   final Widget? child;

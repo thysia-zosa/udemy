@@ -28,9 +28,11 @@ class BottomButton extends StatelessWidget {
         padding: EdgeInsets.only(
           bottom: _paddingBottom,
         ),
-        child: Text(
-          text,
-          style: Texts.button,
+        child: Center(
+          child: Text(
+            text,
+            style: Texts.button,
+          ),
         ),
       ),
       onTap: onPressed,
