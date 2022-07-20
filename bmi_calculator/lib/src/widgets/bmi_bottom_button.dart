@@ -31,7 +31,7 @@ class BmiBottomButton extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            text,
+            text.toUpperCase(),
             style: Texts.button,
           ),
         ),
