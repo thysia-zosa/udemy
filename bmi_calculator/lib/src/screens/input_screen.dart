@@ -61,33 +61,26 @@ class _InputScreenState extends State<InputScreen> {
 
   BmiCard _sliderCard() => BmiCard();
 
-  BmiCard _femaleCard() {
+  BmiCard _genderCard(
+    Gender gender,
+    String title,
+    IconData icon,
+  ) {
     return BmiCard(
-      color: person.gender == Gender.female ? Cols.lightPurple : Cols.purple,
+      color: person.gender == gender ? Cols.lightPurple : Cols.purple,
+      onPressed: () {
+        setState(() {
+          person.gender = gender;
+        });
+      },
       child: IconCard(
-        onPressed: () {
-          setState(() {
-            person.gender = Gender.female;
-          });
-        },
-        icon: Ikons.female,
-        text: 'female'.toUpperCase(),
+        icon: icon,
+        text: title.toUpperCase(),
       ),
     );
   }
 
-  BmiCard _maleCard() {
-    return BmiCard(
-      color: person.gender == Gender.male ? Cols.lightPurple : Cols.purple,
-      child: IconCard(
-        onPressed: () {
-          setState(() {
-            person.gender = Gender.male;
-          });
-        },
-        icon: Ikons.male,
-        text: 'male'.toUpperCase(),
-      ),
-    );
-  }
+  BmiCard _femaleCard() => _genderCard(Gender.female, 'female', Ikons.female);
+
+  BmiCard _maleCard() => _genderCard(Gender.male, 'male', Ikons.male);
 }
