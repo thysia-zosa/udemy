@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/src/screens/result_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../consts.dart';
@@ -18,7 +19,16 @@ class InputScreen extends StatefulWidget {
 
 class _InputScreenState extends State<InputScreen> {
   BmiPerson person = BmiPerson();
-  void _calculate() {}
+  void _calculate() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ResultScreen(
+          bmiResult: person.getResult(),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
