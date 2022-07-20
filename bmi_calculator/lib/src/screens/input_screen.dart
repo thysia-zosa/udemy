@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../consts.dart';
 import '../models/bmi_person.dart';
 import '../models/gender.dart';
+import '../widgets/bmi_app_bar.dart';
 import '../widgets/bmi_bottom_button.dart';
 import '../widgets/bmi_card.dart';
 import '../widgets/bmi_icon_button.dart';
@@ -22,12 +23,7 @@ class _InputScreenState extends State<InputScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'BMI calculator'.toUpperCase(),
-        ),
-        centerTitle: true,
-      ),
+      appBar: BmiAppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
