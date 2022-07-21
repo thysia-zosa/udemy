@@ -20,7 +20,10 @@ class InputScreen extends StatefulWidget {
 class _InputScreenState extends State<InputScreen> {
   BmiPerson person = BmiPerson();
   void _calculate() {
-    if (person.gender == null) return;
+    if (person.gender == null) {
+      _noGenderAlert();
+      return;
+    }
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -28,6 +31,29 @@ class _InputScreenState extends State<InputScreen> {
           bmiResult: person.getResult(),
         ),
       ),
+    );
+  }
+
+  // TODO: adapt design
+  Future<void> _noGenderAlert() async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('No gender set'),
+          content: const Center(
+            child: Text('You have to chose a gender.'),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 
