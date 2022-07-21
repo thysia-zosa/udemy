@@ -38,6 +38,7 @@ class BmiPerson {
     return 10000 * weight / (height * height);
   }
 
+  // TODO: include age if possible
   BmiResult getResult() {
     if (gender == null) throw Exception('Gender is null');
     double bmi = _calculateBmi();

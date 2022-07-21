@@ -29,32 +29,37 @@ class ResultScreen extends StatelessWidget {
               ),
             ),
           ),
-          BmiCard(
-              flex: 5,
-              horizontalPadding: 15.0,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    bmiResult.title.toUpperCase(),
-                    style: Texts.result,
-                  ),
-                  Text(
-                    bmiResult.bmi,
-                    style: Texts.veryBig,
-                  ),
-                  Text(
-                    bmiResult.explanation,
-                    style: Texts.body,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              )),
+          _resultCard(),
           BmiBottomButton(
             text: 're-calculate',
             onPressed: () {
               Navigator.pop(context);
             },
+          ),
+        ],
+      ),
+    );
+  }
+
+  BmiCard _resultCard() {
+    return BmiCard(
+      flex: 5,
+      horizontalPadding: 15.0,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(
+            bmiResult.title.toUpperCase(),
+            style: Texts.result,
+          ),
+          Text(
+            bmiResult.bmi,
+            style: Texts.veryBig,
+          ),
+          Text(
+            bmiResult.explanation,
+            style: Texts.body,
+            textAlign: TextAlign.center,
           ),
         ],
       ),
