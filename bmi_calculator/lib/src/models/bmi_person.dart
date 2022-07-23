@@ -6,7 +6,7 @@ List<BmiResult> _results = [
     18.0,
     19.0,
     'Underweight'.toUpperCase(),
-    'You have a higher than normal body weight. Try to exercise more.',
+    'You have a lower than normal body weight. You can eat a bit more.',
   ),
   BmiResult(
     25.0,
@@ -18,7 +18,7 @@ List<BmiResult> _results = [
     double.infinity,
     double.infinity,
     'Overweight'.toUpperCase(),
-    'You have a lower than normal body weight. You can eat a bit more.',
+    'You have a higher than normal body weight. Try to exercise more.',
   ),
 ];
 
