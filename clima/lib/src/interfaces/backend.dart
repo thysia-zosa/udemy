@@ -5,7 +5,7 @@ import '../models/location.dart';
 import '../models/weather_data.dart';
 
 abstract class Backend {
-  Future<WeatherData> getWeatherData(String? cityName);
+  Future<WeatherData> getWeatherData([String? cityName]);
 
   factory Backend() => _Backend();
 }
@@ -25,7 +25,7 @@ class _Backend implements Backend {
   factory _Backend() => _instance ??= _Backend._();
 
   @override
-  Future<WeatherData> getWeatherData(String? cityName) async {
+  Future<WeatherData> getWeatherData([String? cityName]) async {
     try {
       String response;
       if (cityName != null) {
@@ -37,7 +37,11 @@ class _Backend implements Backend {
       return _interpretator.interpretWeatherData(response);
     } catch (e, s) {
       print('error in backend:\n$e\n$s');
-      throw 'Fetching data went wrong.';
+      return WeatherData(
+        temperature: '0',
+        symbol: 'Error',
+        description: 'Unable to get weather data.',
+      );
     }
   }
 }
