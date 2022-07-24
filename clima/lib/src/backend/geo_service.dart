@@ -22,13 +22,15 @@ class GeoService {
           'Location permissions are permanently denied and cannot be requested.');
     }
 
-    return await Geolocator.getCurrentPosition();
+    return await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.low,
+    );
   }
 
   Future<Location> getLocation() async {
     Position position = await _getPosition();
     return Location(
-      latitude: position.accuracy,
+      latitude: position.latitude,
       longitude: position.longitude,
     );
   }
