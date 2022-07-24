@@ -26,13 +26,18 @@ class _Backend implements Backend {
 
   @override
   Future<WeatherData> getWeatherData(String? cityName) async {
-    String response;
-    if (cityName != null) {
-      response = await _weatherService.getByCityName(cityName);
-    } else {
-      Location location = await _geoService.getLocation();
-      response = await _weatherService.getByLocation(location);
+    try {
+      String response;
+      if (cityName != null) {
+        response = await _weatherService.getByCityName(cityName);
+      } else {
+        Location location = await _geoService.getLocation();
+        response = await _weatherService.getByLocation(location);
+      }
+      return _interpretator.interpretWeatherData(response);
+    } catch (e, s) {
+      print('error in backend:\n$e\n$s');
+      throw 'Fetching data went wrong.';
     }
-    return _interpretator.interpretWeatherData(response);
   }
 }
