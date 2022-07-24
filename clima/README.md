@@ -12,3 +12,18 @@ Climate show app for Location
 * you need the temperature, the condition and the city name
 * everything about that weather goes into the NetworkHelper class
 * this is used in the location screen
+
+## Architecture
+
+### Frontend
+
+Starting point is the loading screen with a fidget spinner (no funny shunny thing). As soon as the data for the local position has been loaded, the location screen opens. By clicking on the City Icon, the City Screen opens with the textfield for the city input.
+
+### Backend
+
+Their are two kinds of requests:
+
+* get Weather by geographical Location (with Location as param)
+* get Weather by City Name (with String as param)
+
+The answer are of the same kind: WeatherData
