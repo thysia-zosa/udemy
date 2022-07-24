@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:clima/src/models/request_items.dart';
-import 'package:clima/src/utilities/consts.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/location.dart';
+import '../models/request_items.dart';
+import '../utilities/consts.dart';
 
 class WeatherService {
   Future<String> _sendRequest(Map<String, dynamic> options) async {

@@ -1,9 +1,6 @@
-import 'dart:convert';
-
-import 'package:clima/src/backend/geo_service.dart';
-import 'package:clima/src/backend/weather_interpretator.dart';
-import 'package:clima/src/backend/weather_service.dart';
-
+import '../backend/geo_service.dart';
+import '../backend/weather_interpretator.dart';
+import '../backend/weather_service.dart';
 import '../models/location.dart';
 import '../models/weather_data.dart';
 
