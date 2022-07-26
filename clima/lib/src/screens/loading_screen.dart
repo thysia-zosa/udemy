@@ -14,7 +14,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   Backend backend = Backend();
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
     backend.getWeatherData().then((weatherData) {
       Navigator.push(
