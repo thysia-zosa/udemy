@@ -47,19 +47,24 @@ class _LocationScreenState extends State<LocationScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              IconButton(
-                onPressed: _fetchData,
-                icon: const Icon(
-                  Icons.near_me,
-                  size: 50.0,
-                ),
-              ),
-              IconButton(
-                onPressed: getCityWeather,
-                icon: const Icon(
-                  Icons.location_city,
-                  size: 50.0,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: _fetchData,
+                    icon: const Icon(
+                      Icons.near_me,
+                      size: 50.0,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: getCityWeather,
+                    icon: const Icon(
+                      Icons.location_city,
+                      size: 50.0,
+                    ),
+                  ),
+                ],
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 15.0),
