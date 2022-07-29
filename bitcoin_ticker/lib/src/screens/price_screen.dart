@@ -1,8 +1,10 @@
 import 'dart:io';
 
-import 'package:bitcoin_ticker/src/utilities/coin_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../utilities/coin_data.dart';
+import '../widgets/coin_card.dart';
 
 class PriceScreen extends StatefulWidget {
   const PriceScreen({Key? key}) : super(key: key);
@@ -13,14 +15,21 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String _selectedCurrency = 'USD';
-  String _rate = '?';
+  // String _rate = '?';
+  final Map<String, CoinCard> _coinCards = {};
 
-  void _updateUI(String newCurrency) {
-    setState(() {
-      _selectedCurrency = newCurrency;
-      _rate = '?';
+  void _setNewCurrency(String newCurrency) {
+    _selectedCurrency = newCurrency;
+    _coinCards.forEach((key, value) {
+      setState(() {
+        _coinCards[key] = CoinCard(
+          coin: key,
+          rate: '?',
+          selectedCurrency: _selectedCurrency,
+        );
+      });
     });
-    _getRate();
+    _getRates();
   }
 
   DropdownButton<String> _androidDropdown() {
@@ -35,7 +44,7 @@ class _PriceScreenState extends State<PriceScreen> {
     }
     return DropdownButton(
       items: dropdownItems,
-      onChanged: (value) => _updateUI(value!),
+      onChanged: (value) => _setNewCurrency(value!),
       value: _selectedCurrency,
     );
   }
@@ -47,24 +56,40 @@ class _PriceScreenState extends State<PriceScreen> {
     }
     return CupertinoPicker(
       itemExtent: 32.0,
-      onSelectedItemChanged: (value) => _updateUI(currenciesList[value]),
+      onSelectedItemChanged: (value) => _setNewCurrency(currenciesList[value]),
       children: pickerItems,
     );
   }
 
-// TODO: create a method here called getData() to get the coin data from coin_data.dart
-  Future<void> _getRate() async {
-    double result = await CoinData.getCoinData(currency: _selectedCurrency);
-    setState(() {
-      _rate = result.toStringAsFixed(0);
+  Future<void> _getRates() async {
+    _coinCards.forEach((key, value) async {
+      double result = await CoinData.getCoinData(
+        currency: _selectedCurrency,
+        coin: key,
+      );
+      setState(() {
+        _coinCards[key] = CoinCard(
+          coin: key,
+          rate: result.toStringAsFixed(0),
+          selectedCurrency: _selectedCurrency,
+        );
+      });
     });
   }
 
   @override
   void initState() {
     super.initState();
-    // TODO: Call getData() when the screen loads up.
-    _getRate();
+    for (String crypto in cryptoList) {
+      _coinCards.addAll({
+        crypto: CoinCard(
+          coin: crypto,
+          rate: '?',
+          selectedCurrency: _selectedCurrency,
+        ),
+      });
+    }
+    _getRates();
   }
 
   @override
@@ -77,30 +102,9 @@ class _PriceScreenState extends State<PriceScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-            child: Card(
-              color: Colors.lightBlueAccent,
-              elevation: 5.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 15.0,
-                  horizontal: 28.0,
-                ),
-                child: Text(
-                  // TODO: Update the Text Widget with the live bitcoin data here.
-                  '1 BTC = $_rate $_selectedCurrency',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: _coinCards.values.toList(),
           ),
           Container(
             height: 150.0,
