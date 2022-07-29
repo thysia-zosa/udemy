@@ -11,7 +11,7 @@ class BitcoinTicker extends StatelessWidget {
         primaryColor: Colors.lightBlue,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: PriceScreen(),
+      home: const PriceScreen(),
     );
   }
 }
