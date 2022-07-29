@@ -21,6 +21,9 @@ class _ChatTextFieldState extends State<ChatTextField> {
       onChanged: widget.onChanged,
       decoration: InputDecoration(
         hintText: widget.hintText,
+        hintStyle: TextStyle(
+          color: Colors.grey,
+        ),
         contentPadding: const EdgeInsets.symmetric(
           vertical: 10.0,
           horizontal: 20.0,

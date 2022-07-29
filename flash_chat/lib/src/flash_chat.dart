@@ -19,6 +19,9 @@ class FlashChat extends StatelessWidget {
         ),
       ),
       home: const WelcomeScreen(),
+      // home: const RegistrationScreen(),
+      // home: const LoginScreen(),
+      // home: const ChatScreen(),
     );
   }
 }
