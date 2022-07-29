@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../utilities/coin_data.dart';
+import '../widgets/coin_card.dart';
 
 class PriceScreen extends StatefulWidget {
   const PriceScreen({Key? key}) : super(key: key);
@@ -53,7 +54,6 @@ class _PriceScreenState extends State<PriceScreen> {
     );
   }
 
-// TODO: create a method here called getData() to get the coin data from coin_data.dart
   Future<void> _getRate() async {
     double result = await CoinData.getCoinData(currency: _selectedCurrency);
     setState(() {
@@ -61,10 +61,23 @@ class _PriceScreenState extends State<PriceScreen> {
     });
   }
 
+  List<Widget> get _getColumnItems {
+    List<Widget> items = [];
+    for (String crypto in cryptoList) {
+      items.add(
+        CoinCard(
+          coin: crypto,
+          rate: _rate,
+          selectedCurrency: _selectedCurrency,
+        ),
+      );
+    }
+    return items;
+  }
+
   @override
   void initState() {
     super.initState();
-    // TODO: Call getData() when the screen loads up.
     _getRate();
   }
 
@@ -78,30 +91,9 @@ class _PriceScreenState extends State<PriceScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-            child: Card(
-              color: Colors.lightBlueAccent,
-              elevation: 5.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 15.0,
-                  horizontal: 28.0,
-                ),
-                child: Text(
-                  // TODO: Update the Text Widget with the live bitcoin data here.
-                  '1 BTC = $_rate $_selectedCurrency',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: _getColumnItems,
           ),
           Container(
             height: 150.0,
