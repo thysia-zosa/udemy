@@ -34,6 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             ChatTextField(
               hintText: 'Enter your email',
+              keyboardType: TextInputType.emailAddress,
               onChanged: (value) {
                 // TODO: Do something with the user input.
               },
@@ -43,6 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             ChatTextField(
               hintText: 'Enter your password',
+              obscureText: true,
               onChanged: (value) {
                 // TODO: Do something with the user input.
               },

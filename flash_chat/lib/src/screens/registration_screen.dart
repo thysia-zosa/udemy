@@ -34,6 +34,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
             ChatTextField(
               hintText: 'Enter your email',
+              keyboardType: TextInputType.emailAddress,
               onChanged: (value) {
                 // TODO: Do something with the user input.
               },
@@ -43,6 +44,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
             ChatTextField(
               hintText: 'Enter your password',
+              obscureText: true,
               onChanged: (value) {
                 // TODO: Do something with the user input.
               },
