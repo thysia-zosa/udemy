@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
 const List<String> currenciesList = [
   'AUD',
   'BRL',
@@ -28,9 +32,30 @@ const List<String> cryptoList = [
   'LTC',
 ];
 
-const coinApiUrl = 'https://rest.coinapi.io/v1/exchangerate';
+const coinApiHost = 'rest.coinapi.io';
+const coinApiPath = '/v1/exchangerate';
 const apiKey = '5F8C2464-C832-4AE7-A0B2-138A60CE32C3';
 
 class CoinData {
   // TODO: Create your getCoinData() method here.
+  static Future<double> getCoinData({
+    required String currency,
+    String coin = 'BTC',
+  }) async {
+    try {
+      http.Response response = await http.get(
+          Uri.https(
+            coinApiHost,
+            '$coinApiPath/$coin/$currency',
+          ),
+          headers: {
+            'X-CoinAPI-Key': apiKey,
+          });
+      Map<String, dynamic> result = json.decode(response.body);
+      return result['rate'];
+    } catch (e, s) {
+      print('Error fetching bitcoin data:\n$e\n$s');
+      return 0.0;
+    }
+  }
 }
