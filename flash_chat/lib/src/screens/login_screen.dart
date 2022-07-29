@@ -14,6 +14,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  String _email = '';
+  String _password = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
               hintText: 'Enter your email',
               keyboardType: TextInputType.emailAddress,
               onChanged: (value) {
-                // TODO: Do something with the user input.
+                _email = value;
               },
             ),
             const SizedBox(
@@ -46,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
               hintText: 'Enter your password',
               obscureText: true,
               onChanged: (value) {
-                // TODO: Do something with the user input.
+                _password = value;
               },
             ),
             const SizedBox(
@@ -54,14 +57,16 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             ChatButton(
               color: Colors.lightBlueAccent,
-              onPressed: () {
-                // TODO: implement login functionality.
-              },
+              onPressed: _login,
               text: 'Log In',
             ),
           ],
         ),
       ),
     );
+  }
+
+  Future<void> _login() async {
+    // TODO: implement login functionality.
   }
 }

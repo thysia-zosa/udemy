@@ -14,6 +14,8 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  String _email = '';
+  String _password = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +38,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               hintText: 'Enter your email',
               keyboardType: TextInputType.emailAddress,
               onChanged: (value) {
-                // TODO: Do something with the user input.
+                _email = value;
               },
             ),
             const SizedBox(
@@ -46,21 +48,24 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               hintText: 'Enter your password',
               obscureText: true,
               onChanged: (value) {
-                // TODO: Do something with the user input.
+                _password = value;
               },
             ),
             const SizedBox(
               height: 24.0,
             ),
             ChatButton(
-                text: 'Register',
-                color: Colors.blueAccent,
-                onPressed: () {
-                  // TODO: Implement registration functionality.
-                }),
+              text: 'Register',
+              color: Colors.blueAccent,
+              onPressed: _register,
+            ),
           ],
         ),
       ),
     );
+  }
+
+  Future<void> _register() async {
+    // TODO: Implement registration functionality.
   }
 }
