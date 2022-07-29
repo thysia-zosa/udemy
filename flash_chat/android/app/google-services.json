@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "899767589934",
+    "firebase_url": "https://loginappflutterhome.firebaseio.com",
+    "project_id": "loginappflutterhome",
+    "storage_bucket": "loginappflutterhome.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899767589934:android:2ba73c453d8827dfa593bf",
+        "android_client_info": {
+          "package_name": "com.example.login_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899767589934-pnj7euip89kua357dc19qlvnv3qd344h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCISM4Gfci7Yhv3HS4a9zyvXzLUgHEbL98"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899767589934-pnj7euip89kua357dc19qlvnv3qd344h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "899767589934-fn048us21vfahfuidntk2sutn6k5ljao.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.loginApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899767589934:android:2ef8ed9e0431ec5fa593bf",
+        "android_client_info": {
+          "package_name": "io.github.thysia_zosa.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899767589934-pnj7euip89kua357dc19qlvnv3qd344h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCISM4Gfci7Yhv3HS4a9zyvXzLUgHEbL98"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899767589934-pnj7euip89kua357dc19qlvnv3qd344h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "899767589934-fn048us21vfahfuidntk2sutn6k5ljao.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.loginApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
