@@ -9,6 +9,10 @@ class BitcoinTicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.lightBlue,
+          centerTitle: true,
+        ),
         primaryColor: Colors.lightBlue,
         scaffoldBackgroundColor: Colors.white,
       ),

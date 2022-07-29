@@ -15,14 +15,21 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String _selectedCurrency = 'USD';
-  String _rate = '?';
+  // String _rate = '?';
+  final Map<String, CoinCard> _coinCards = {};
 
-  void _updateUI(String newCurrency) {
-    setState(() {
-      _selectedCurrency = newCurrency;
-      _rate = '?';
+  void _setNewCurrency(String newCurrency) {
+    _selectedCurrency = newCurrency;
+    _coinCards.forEach((key, value) {
+      setState(() {
+        _coinCards[key] = CoinCard(
+          coin: key,
+          rate: '?',
+          selectedCurrency: _selectedCurrency,
+        );
+      });
     });
-    _getRate();
+    _getRates();
   }
 
   DropdownButton<String> _androidDropdown() {
@@ -37,7 +44,7 @@ class _PriceScreenState extends State<PriceScreen> {
     }
     return DropdownButton(
       items: dropdownItems,
-      onChanged: (value) => _updateUI(value!),
+      onChanged: (value) => _setNewCurrency(value!),
       value: _selectedCurrency,
     );
   }
@@ -49,36 +56,40 @@ class _PriceScreenState extends State<PriceScreen> {
     }
     return CupertinoPicker(
       itemExtent: 32.0,
-      onSelectedItemChanged: (value) => _updateUI(currenciesList[value]),
+      onSelectedItemChanged: (value) => _setNewCurrency(currenciesList[value]),
       children: pickerItems,
     );
   }
 
-  Future<void> _getRate() async {
-    double result = await CoinData.getCoinData(currency: _selectedCurrency);
-    setState(() {
-      _rate = result.toStringAsFixed(0);
-    });
-  }
-
-  List<Widget> get _getColumnItems {
-    List<Widget> items = [];
-    for (String crypto in cryptoList) {
-      items.add(
-        CoinCard(
-          coin: crypto,
-          rate: _rate,
-          selectedCurrency: _selectedCurrency,
-        ),
+  Future<void> _getRates() async {
+    _coinCards.forEach((key, value) async {
+      double result = await CoinData.getCoinData(
+        currency: _selectedCurrency,
+        coin: key,
       );
-    }
-    return items;
+      setState(() {
+        _coinCards[key] = CoinCard(
+          coin: key,
+          rate: result.toStringAsFixed(0),
+          selectedCurrency: _selectedCurrency,
+        );
+      });
+    });
   }
 
   @override
   void initState() {
     super.initState();
-    _getRate();
+    for (String crypto in cryptoList) {
+      _coinCards.addAll({
+        crypto: CoinCard(
+          coin: crypto,
+          rate: '?',
+          selectedCurrency: _selectedCurrency,
+        ),
+      });
+    }
+    _getRates();
   }
 
   @override
@@ -93,7 +104,7 @@ class _PriceScreenState extends State<PriceScreen> {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: _getColumnItems,
+            children: _coinCards.values.toList(),
           ),
           Container(
             height: 150.0,
