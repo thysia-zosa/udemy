@@ -12,8 +12,16 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
-  String? _selectedCurrency;
-  String rate = '?';
+  String _selectedCurrency = 'USD';
+  String _rate = '?';
+
+  void _updateUI(String newCurrency) {
+    setState(() {
+      _selectedCurrency = newCurrency;
+      _rate = '?';
+    });
+    _getRate();
+  }
 
   DropdownButton<String> _androidDropdown() {
     List<DropdownMenuItem<String>> dropdownItems = [];
@@ -27,11 +35,7 @@ class _PriceScreenState extends State<PriceScreen> {
     }
     return DropdownButton(
       items: dropdownItems,
-      onChanged: (value) {
-        setState(() {
-          _selectedCurrency = value;
-        });
-      },
+      onChanged: (value) => _updateUI(value!),
       value: _selectedCurrency,
     );
   }
@@ -43,25 +47,24 @@ class _PriceScreenState extends State<PriceScreen> {
     }
     return CupertinoPicker(
       itemExtent: 32.0,
-      onSelectedItemChanged: (selectedIndex) {
-        setState(() {
-          _selectedCurrency = currenciesList[selectedIndex];
-        });
-      },
+      onSelectedItemChanged: (value) => _updateUI(currenciesList[value]),
       children: pickerItems,
     );
   }
 
 // TODO: create a method here called getData() to get the coin data from coin_data.dart
-  Future<double> _getData() async {
-    return await CoinData.getCoinData(currency: _selectedCurrency ?? 'USD');
+  Future<void> _getRate() async {
+    double result = await CoinData.getCoinData(currency: _selectedCurrency);
+    setState(() {
+      _rate = result.toStringAsFixed(0);
+    });
   }
 
   @override
   void initState() {
     super.initState();
     // TODO: Call getData() when the screen loads up.
-    _getData().then((value) => rate = value.toStringAsFixed(0));
+    _getRate();
   }
 
   @override
@@ -89,7 +92,7 @@ class _PriceScreenState extends State<PriceScreen> {
                 ),
                 child: Text(
                   // TODO: Update the Text Widget with the live bitcoin data here.
-                  '1 BTC = $rate USD',
+                  '1 BTC = $_rate $_selectedCurrency',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 20.0,
