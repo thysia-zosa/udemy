@@ -1,9 +1,13 @@
+import 'package:flash_chat/src/screens/login_screen.dart';
+import 'package:flash_chat/src/screens/registration_screen.dart';
+import 'package:flash_chat/src/widgets/hero_icon.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/chat_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
+  static String route = 'welcomeScreen';
 
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
@@ -23,17 +27,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Row(
-              children: [
-                SizedBox(
+              children: const [
+                HeroIcon(
                   height: 60.0,
-                  child: Image.asset('images/logo.png'),
                 ),
-                const Text(
+                Text(
                   'Flash Chat',
                   style: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,
-                    color: Colors.black,
                   ),
                 ),
               ],
@@ -45,14 +47,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               text: 'Log In',
               color: Colors.lightBlueAccent,
               onPressed: () {
-                // TODO: Go to login screen.
+                Navigator.pushNamed(context, LoginScreen.route);
               },
             ),
             ChatButton(
               text: 'Register',
               color: Colors.blueAccent,
               onPressed: () {
-                // TODO: Go to registration screen.
+                Navigator.pushNamed(context, RegistrationScreen.route);
               },
             ),
           ],

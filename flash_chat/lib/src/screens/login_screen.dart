@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../widgets/chat_button.dart';
 import '../widgets/chat_text_field.dart';
+import '../widgets/hero_icon.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+
+  static String route = 'loginScreen';
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -23,9 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(
+            const HeroIcon(
               height: 200.0,
-              child: Image.asset('images/logo.png'),
             ),
             const SizedBox(
               height: 48.0,
