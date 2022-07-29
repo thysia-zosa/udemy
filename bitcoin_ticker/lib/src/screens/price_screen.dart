@@ -1,8 +1,9 @@
 import 'dart:io';
 
-import 'package:bitcoin_ticker/src/utilities/coin_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../utilities/coin_data.dart';
 
 class PriceScreen extends StatefulWidget {
   const PriceScreen({Key? key}) : super(key: key);

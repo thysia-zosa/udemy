@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'screens/price_screen.dart';
 
 class BitcoinTicker extends StatelessWidget {
