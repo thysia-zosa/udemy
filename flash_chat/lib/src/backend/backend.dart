@@ -86,6 +86,7 @@ class _FireBaseBackend implements Backend {
     _firestore.collection(collection).add(message.toJson());
   }
 
+// TODO: test stream possibilities: there must be a way...
   @override
   Stream<QuerySnapshot<Map<String, dynamic>>> messageStream() => _firestore
           .collection(collection)

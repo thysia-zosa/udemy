@@ -95,7 +95,6 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      // TODO: Implement send functionality.
                       Backend().sendMessage(
                         Message(
                           date: DateTime.now().toUtc(),
