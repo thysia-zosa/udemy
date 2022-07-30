@@ -25,3 +25,10 @@ const messageContainerDeco = BoxDecoration(
     ),
   ),
 );
+
+const messageSenderStyle = TextStyle(
+  fontSize: 12.0,
+  color: Colors.black54,
+);
+
+const messageRadius = Radius.circular(30.0);

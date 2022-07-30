@@ -64,9 +64,11 @@ class _ChatScreenState extends State<ChatScreen> {
                   List<ChatItem> items = [];
                   // snapshot.data!.map((e) => ChatItem(message: e)).toList();
                   for (var element in snapshot.data!.docs) {
+                    Message message = Message.fromJson(element.data());
                     items.add(
                       ChatItem(
-                        message: Message.fromJson(element.data()),
+                        message: message,
+                        isMe: message.sender == _currentUserEmail,
                       ),
                     );
                   }
