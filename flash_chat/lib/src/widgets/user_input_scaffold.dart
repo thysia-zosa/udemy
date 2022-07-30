@@ -5,8 +5,8 @@ import 'chat_button.dart';
 import 'chat_text_field.dart';
 import 'hero_icon.dart';
 
-class UserEntryScaffold extends StatefulWidget {
-  const UserEntryScaffold({
+class UserInputScaffold extends StatefulWidget {
+  const UserInputScaffold({
     Key? key,
     required this.text,
     required this.color,
@@ -21,10 +21,10 @@ class UserEntryScaffold extends StatefulWidget {
   }) callBack;
 
   @override
-  State<UserEntryScaffold> createState() => _UserEntryScaffoldState();
+  State<UserInputScaffold> createState() => _UserInputScaffoldState();
 }
 
-class _UserEntryScaffoldState extends State<UserEntryScaffold> {
+class _UserInputScaffoldState extends State<UserInputScaffold> {
   bool _isWaiting = false;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../backend/backend.dart';
-import '../widgets/user_entry_scaffold.dart';
+import '../widgets/user_input_scaffold.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -10,7 +10,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return UserEntryScaffold(
+    return UserInputScaffold(
       text: 'Log In',
       color: Colors.lightBlueAccent,
       callBack: Backend().login,
