@@ -1,44 +1,63 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-class Backend {
-  static Backend? _instance;
+abstract class Backend {
+  Future<UserCredential> register({
+    required String email,
+    required String password,
+  });
+
+  Future<UserCredential> login({
+    required String email,
+    required String password,
+  });
+
+  Future<void> logout();
+
+  factory Backend() => _FireBaseBackend();
+}
+
+class _FireBaseBackend implements Backend {
+  static _FireBaseBackend? _instance;
   final FirebaseAuth _auth;
 
-  Backend._() : _auth = FirebaseAuth.instance;
+  _FireBaseBackend._() : _auth = FirebaseAuth.instance;
 
-  factory Backend() => _instance ??= Backend._();
+  factory _FireBaseBackend() => _instance ??= _FireBaseBackend._();
 
-  Future<String?> register({
+  @override
+  Future<UserCredential> register({
     required String email,
     required String password,
   }) async {
     try {
-      final UserCredential credential =
+      final UserCredential credentials =
           await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return null;
+      return credentials;
     } on FirebaseAuthException catch (e) {
-      return e.message;
+      throw e.message ?? 'An unknown error occurred.';
     }
   }
 
-  Future<String?> login({
+  @override
+  Future<UserCredential> login({
     required String email,
     required String password,
   }) async {
     try {
-      UserCredential credential = await _auth.signInWithEmailAndPassword(
+      UserCredential credentials = await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return null;
+      return credentials;
     } on FirebaseAuthException catch (e) {
-      return e.message;
+      throw e.message ?? 'An unknown error occurred';
     }
   }
 
+  @override
   Future<void> logout() async {
     await _auth.signOut();
   }

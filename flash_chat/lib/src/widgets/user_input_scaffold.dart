@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/chat_screen.dart';
@@ -15,7 +16,7 @@ class UserInputScaffold extends StatefulWidget {
 
   final String text;
   final Color color;
-  final Future<String?> Function({
+  final Future<UserCredential> Function({
     required String email,
     required String password,
   }) callBack;
@@ -90,7 +91,7 @@ class _UserInputScaffoldState extends State<UserInputScaffold> {
   }
 
   void _onPressed(
-    Future<String?> Function({
+    Future<UserCredential> Function({
       required String email,
       required String password,
     })
@@ -107,14 +108,18 @@ class _UserInputScaffoldState extends State<UserInputScaffold> {
         setState(() {
           _isWaiting = false;
         });
-        if (response != null) {
-          return _showErrorMessage(
-            response,
-            _emailController.text,
-            _passwordController.text,
-          );
-        }
         Navigator.pushNamed(context, ChatScreen.route);
+      },
+    ).catchError(
+      (error) {
+        setState(() {
+          _isWaiting = false;
+        });
+        _showErrorMessage(
+          error,
+          _emailController.text,
+          _passwordController.text,
+        );
       },
     );
   }
