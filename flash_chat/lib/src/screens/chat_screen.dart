@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../backend/backend.dart';
+import '../models/message.dart';
 import '../utilities/consts.dart';
 import '../widgets/chat_item.dart';
 
@@ -49,7 +51,7 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            StreamBuilder<List<Map<String, dynamic>>>(
+            StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
                 stream: Backend().messageStream(),
                 builder: ((context, snapshot) {
                   if (!snapshot.hasData) {
@@ -60,14 +62,17 @@ class _ChatScreenState extends State<ChatScreen> {
                     );
                   }
                   List<ChatItem> items = [];
-                  for (var element in snapshot.data!) {
+                  // snapshot.data!.map((e) => ChatItem(message: e)).toList();
+                  for (var element in snapshot.data!.docs) {
                     items.add(
                       ChatItem(
-                        message: element[messageKey],
-                        sender: element[senderKey],
+                        message: Message.fromJson(element.data()),
                       ),
                     );
                   }
+                  items.sort(
+                    (a, b) => b.message.date.compareTo(a.message.date),
+                  );
                   return Expanded(
                     child: ListView(
                       reverse: true,
@@ -90,8 +95,11 @@ class _ChatScreenState extends State<ChatScreen> {
                     onPressed: () {
                       // TODO: Implement send functionality.
                       Backend().sendMessage(
-                        sender: _currentUserEmail,
-                        message: _messageController.text,
+                        Message(
+                          date: DateTime.now().toUtc(),
+                          sender: _currentUserEmail,
+                          message: _messageController.text,
+                        ),
                       );
                       _messageController.clear();
                     },

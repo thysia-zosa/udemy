@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../models/message.dart';
 import '../utilities/consts.dart';
 
 abstract class Backend {
@@ -18,12 +19,11 @@ abstract class Backend {
 
   Future<void> logout();
 
-  Future<void> sendMessage({
-    required String sender,
-    required String message,
-  });
+  Future<void> sendMessage(
+    Message message,
+  );
 
-  Stream<List<Map<String, dynamic>>> messageStream();
+  Stream<QuerySnapshot<Map<String, dynamic>>> messageStream();
 
   factory Backend() => _FireBaseBackend();
 }
@@ -80,29 +80,30 @@ class _FireBaseBackend implements Backend {
   }
 
   @override
-  Future<void> sendMessage({
-    required String sender,
-    required String message,
-  }) async {
-    _firestore.collection(collection).add(
-      {
-        senderKey: sender,
-        messageKey: message,
-      },
-    );
+  Future<void> sendMessage(
+    Message message,
+  ) async {
+    _firestore.collection(collection).add(message.toJson());
   }
 
   @override
-  Stream<List<Map<String, dynamic>>> messageStream() =>
-      _firestore.collection(collection).snapshots().map(
+  Stream<QuerySnapshot<Map<String, dynamic>>> messageStream() => _firestore
+          .collection(collection)
+          .snapshots() /* .map(
         (event) {
-          List<Map<String, dynamic>> entries = [];
+          // return event.docs.map((e) => Message.fromJson(e.data())).toList()
+          //   ..sort(
+          //     (a, b) => a.date.compareTo(b.date),
+          //   );
+          List<Message> entries = [];
           for (QueryDocumentSnapshot<Map<String, dynamic>> element
               in event.docs) {
-            entries.add(element.data());
+            entries.add(Message.fromJson(element.data()));
+            print('snapData: ${element.data()}');
+            print('entries: $entries');
           }
-          print(entries);
           return entries.reversed.toList();
         },
-      );
+      ) */
+      ;
 }
