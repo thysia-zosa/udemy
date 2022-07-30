@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 const String collection = 'messages';
-const String sender = 'sender';
-const String message = 'message';
+const String senderKey = 'sender';
+const String messageKey = 'message';
 
 const sendButtonStyle = TextStyle(
   color: Colors.lightBlueAccent,

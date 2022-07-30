@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../backend/backend.dart';
 import '../utilities/consts.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -12,6 +13,15 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final TextEditingController _messageController = TextEditingController();
+  final String _currentUserEmail = Backend().getCurrentUserEmail();
+
+  @override
+  void dispose() {
+    _messageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +31,9 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
             onPressed: () {
               // TODO: Implement logout functionality.
+              Backend().logout().then((value) {
+                Navigator.pop(context);
+              });
             },
             icon: const Icon(
               Icons.close,
@@ -42,15 +55,18 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: [
                   Expanded(
                     child: TextField(
-                      onChanged: (value) {
-                        // TODO: Do something with the user input.
-                      },
+                      controller: _messageController,
                       decoration: messageTextFieldDeco,
                     ),
                   ),
                   TextButton(
                     onPressed: () {
                       // TODO: Implement send functionality.
+                      Backend().sendMessage(
+                        sender: _currentUserEmail,
+                        message: _messageController.text,
+                      );
+                      _messageController.clear();
                     },
                     child: const Text(
                       'Send',
