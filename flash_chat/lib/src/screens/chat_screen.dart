@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../backend/backend.dart';
@@ -17,6 +16,7 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _messageController = TextEditingController();
   final String _currentUserEmail = Backend().getCurrentUserEmail();
+  // List<ChatItem> _chatItems = [];
 
   @override
   void dispose() {
@@ -32,7 +32,6 @@ class _ChatScreenState extends State<ChatScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              // TODO: Implement logout functionality.
               Backend().logout().then((value) {
                 Navigator.pop(context);
               });
@@ -51,28 +50,31 @@ class _ChatScreenState extends State<ChatScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             StreamBuilder<List<Map<String, dynamic>>>(
+                stream: Backend().messageStream(),
                 builder: ((context, snapshot) {
-              if (!snapshot.hasData) {
-                return const Expanded(
-                  child: Center(
-                    child: Text('Start a new conversation.'),
-                  ),
-                );
-              }
-              List<ChatItem> items = [];
-              for (var element in snapshot.data!) {
-                items.add(
-                  ChatItem(
-                    message: element[messageKey],
-                    sender: element[senderKey],
-                  ),
-                );
-              }
-              return ListView(
-                reverse: true,
-                children: items.reversed.toList(),
-              );
-            })),
+                  if (!snapshot.hasData) {
+                    return const Expanded(
+                      child: Center(
+                        child: Text('Start a new conversation.'),
+                      ),
+                    );
+                  }
+                  List<ChatItem> items = [];
+                  for (var element in snapshot.data!) {
+                    items.add(
+                      ChatItem(
+                        message: element[messageKey],
+                        sender: element[senderKey],
+                      ),
+                    );
+                  }
+                  return Expanded(
+                    child: ListView(
+                      reverse: true,
+                      children: items,
+                    ),
+                  );
+                })),
             Container(
               decoration: messageContainerDeco,
               child: Row(

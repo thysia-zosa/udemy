@@ -97,10 +97,12 @@ class _FireBaseBackend implements Backend {
       _firestore.collection(collection).snapshots().map(
         (event) {
           List<Map<String, dynamic>> entries = [];
-          for (DocumentChange element in event.docChanges) {
-            entries.add(element.doc.data() as Map<String, dynamic>);
+          for (QueryDocumentSnapshot<Map<String, dynamic>> element
+              in event.docs) {
+            entries.add(element.data());
           }
-          return entries;
+          print(entries);
+          return entries.reversed.toList();
         },
       );
 }
