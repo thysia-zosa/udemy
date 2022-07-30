@@ -26,8 +26,15 @@ class UserEntryScaffold extends StatefulWidget {
 
 class _UserEntryScaffoldState extends State<UserEntryScaffold> {
   bool _isWaiting = false;
-  String _email = '';
-  String _password = '';
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,19 +63,15 @@ class _UserEntryScaffoldState extends State<UserEntryScaffold> {
                   ChatTextField(
                     hintText: 'Enter your email',
                     keyboardType: TextInputType.emailAddress,
-                    onChanged: (value) {
-                      _email = value;
-                    },
+                    controller: _emailController,
                   ),
                   const SizedBox(
                     height: 8.0,
                   ),
                   ChatTextField(
                     hintText: 'Enter your password',
+                    controller: _passwordController,
                     obscureText: true,
-                    onChanged: (value) {
-                      _password = value;
-                    },
                   ),
                   const SizedBox(
                     height: 24.0,
@@ -97,20 +100,30 @@ class _UserEntryScaffoldState extends State<UserEntryScaffold> {
       _isWaiting = true;
     });
     callBack(
-      email: _email,
-      password: _password,
+      email: _emailController.text,
+      password: _passwordController.text,
     ).then(
       (response) {
         setState(() {
           _isWaiting = false;
         });
-        if (response != null) return _showErrorMessage(response);
+        if (response != null) {
+          return _showErrorMessage(
+            response,
+            _emailController.text,
+            _passwordController.text,
+          );
+        }
         Navigator.pushNamed(context, ChatScreen.route);
       },
     );
   }
 
-  Future<void> _showErrorMessage(String errorMessage) {
+  Future<void> _showErrorMessage(
+    String errorMessage,
+    String email,
+    String password,
+  ) {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -122,6 +135,8 @@ class _UserEntryScaffoldState extends State<UserEntryScaffold> {
           actions: [
             TextButton(
               onPressed: () {
+                _emailController.text = email;
+                _passwordController.text = password;
                 Navigator.of(context).pop();
               },
               child: const Text('OK'),

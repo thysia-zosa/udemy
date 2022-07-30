@@ -4,15 +4,15 @@ class ChatTextField extends StatefulWidget {
   const ChatTextField({
     Key? key,
     required this.hintText,
-    required this.onChanged,
     this.keyboardType,
+    this.controller,
     this.obscureText = false,
   }) : super(key: key);
 
   final String hintText;
-  final void Function(String) onChanged;
   final TextInputType? keyboardType;
   final bool obscureText;
+  final TextEditingController? controller;
 
   @override
   State<ChatTextField> createState() => _ChatTextFieldState();
@@ -22,10 +22,10 @@ class _ChatTextFieldState extends State<ChatTextField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: widget.controller,
       keyboardType: widget.keyboardType,
       obscureText: widget.obscureText,
       textAlign: TextAlign.center,
-      onChanged: widget.onChanged,
       decoration: InputDecoration(
         hintText: widget.hintText,
         contentPadding: const EdgeInsets.symmetric(
