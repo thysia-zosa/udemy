@@ -1,14 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flash_chat/src/utilities/consts.dart';
+
+import '../utilities/consts.dart';
 
 abstract class Backend {
-  Future<UserCredential> register({
+  Future<String?> register({
     required String email,
     required String password,
   });
 
-  Future<UserCredential> login({
+  Future<String?> login({
     required String email,
     required String password,
   });
@@ -37,35 +38,34 @@ class _FireBaseBackend implements Backend {
   factory _FireBaseBackend() => _instance ??= _FireBaseBackend._();
 
   @override
-  Future<UserCredential> register({
+  Future<String?> register({
     required String email,
     required String password,
   }) async {
     try {
-      final UserCredential credentials =
-          await _auth.createUserWithEmailAndPassword(
+      await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return credentials;
+      return null;
     } on FirebaseAuthException catch (e) {
-      throw e.message ?? 'An unknown error occurred.';
+      return e.message;
     }
   }
 
   @override
-  Future<UserCredential> login({
+  Future<String?> login({
     required String email,
     required String password,
   }) async {
     try {
-      UserCredential credentials = await _auth.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return credentials;
+      return null;
     } on FirebaseAuthException catch (e) {
-      throw e.message ?? 'An unknown error occurred';
+      return e.message;
     }
   }
 
