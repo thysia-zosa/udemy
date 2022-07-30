@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+const String collection = 'messages';
+const String senderKey = 'sender';
+const String messageKey = 'message';
+
 const sendButtonStyle = TextStyle(
   color: Colors.lightBlueAccent,
   fontWeight: FontWeight.bold,
@@ -21,3 +25,10 @@ const messageContainerDeco = BoxDecoration(
     ),
   ),
 );
+
+const messageSenderStyle = TextStyle(
+  fontSize: 12.0,
+  color: Colors.black54,
+);
+
+const messageRadius = Radius.circular(30.0);
