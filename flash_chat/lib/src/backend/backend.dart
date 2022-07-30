@@ -23,6 +23,8 @@ abstract class Backend {
     required String message,
   });
 
+  Stream<List<Map<String, dynamic>>> messageStream();
+
   factory Backend() => _FireBaseBackend();
 }
 
@@ -90,7 +92,15 @@ class _FireBaseBackend implements Backend {
     );
   }
 
-  // @override
-  // Stream<DocumentSnapshot> messageStream() =>
-  //     _firestore.collection(collection).snapshots();
+  @override
+  Stream<List<Map<String, dynamic>>> messageStream() =>
+      _firestore.collection(collection).snapshots().map(
+        (event) {
+          List<Map<String, dynamic>> entries = [];
+          for (DocumentChange element in event.docChanges) {
+            entries.add(element.doc.data() as Map<String, dynamic>);
+          }
+          return entries;
+        },
+      );
 }

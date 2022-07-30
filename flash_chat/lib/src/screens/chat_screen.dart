@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../backend/backend.dart';
 import '../utilities/consts.dart';
+import '../widgets/chat_item.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -48,6 +50,29 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            StreamBuilder<List<Map<String, dynamic>>>(
+                builder: ((context, snapshot) {
+              if (!snapshot.hasData) {
+                return const Expanded(
+                  child: Center(
+                    child: Text('Start a new conversation.'),
+                  ),
+                );
+              }
+              List<ChatItem> items = [];
+              for (var element in snapshot.data!) {
+                items.add(
+                  ChatItem(
+                    message: element[messageKey],
+                    sender: element[senderKey],
+                  ),
+                );
+              }
+              return ListView(
+                reverse: true,
+                children: items.reversed.toList(),
+              );
+            })),
             Container(
               decoration: messageContainerDeco,
               child: Row(
