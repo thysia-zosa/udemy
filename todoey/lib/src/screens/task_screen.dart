@@ -11,31 +11,61 @@ class TaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.lightBlueAccent,
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            padding: EdgeInsets.fromLTRB(30.0, 60.0, 30.0, 30.0),
+            padding: const EdgeInsets.fromLTRB(30.0, 60.0, 30.0, 30.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircleAvatar(child: Icon(Icons.list)),
-                SizedBox(height: 10.0),
-                Text('Todoey'),
-                Text('${Provider.of<TaskData>(context).taskCount} Tasks'),
+                const CircleAvatar(
+                  radius: 30.0,
+                  backgroundColor: Colors.white,
+                  child: Icon(
+                    Icons.list,
+                    color: Colors.lightBlueAccent,
+                    size: 40.0,
+                  ),
+                ),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                const Text(
+                  'Todoey',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 40.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  '${Provider.of<TaskData>(context).taskCount} Tasks',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                  ),
+                ),
               ],
             ),
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 20.0,
               ),
-              child: TaskListView(),
+              child: const TaskListView(),
             ),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        backgroundColor: Colors.lightBlueAccent,
+        child: const Icon(
+          Icons.add,
+          size: 40.0,
+        ),
         onPressed: () => showModalBottomSheet(
           context: context,
           isScrollControlled: true,
@@ -44,7 +74,7 @@ class TaskScreen extends StatelessWidget {
               padding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
-              child: AddTaskBottomSheet(),
+              child: const AddTaskBottomSheet(),
             ),
           ),
         ),
