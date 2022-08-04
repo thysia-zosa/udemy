@@ -11,7 +11,7 @@ class Todoey extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => TaskData(),
-      child: MaterialApp(
+      child: const MaterialApp(
         home: TaskScreen(),
       ),
     );
