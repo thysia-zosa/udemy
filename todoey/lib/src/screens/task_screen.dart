@@ -58,7 +58,7 @@ class TaskScreen extends StatelessWidget {
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                  topLeft: const Radius.circular(20.0),
+                  topLeft: Radius.circular(20.0),
                   topRight: Radius.circular(20.0),
                 ),
               ),
