@@ -42,7 +42,7 @@ class TaskScreen extends StatelessWidget {
                 ),
                 Text(
                   '${Provider.of<TaskData>(context).taskCount} Tasks',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20.0,
                   ),
@@ -54,6 +54,13 @@ class TaskScreen extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(
                 horizontal: 20.0,
+              ),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(20.0),
+                  topRight: Radius.circular(20.0),
+                ),
               ),
               child: const TaskListView(),
             ),
