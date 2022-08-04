@@ -21,11 +21,14 @@ class TaskTile extends StatelessWidget {
         task.title,
         style: TextStyle(
           decoration: task.isDone ? TextDecoration.lineThrough : null,
+          color: Colors.lightBlue,
+          fontWeight: FontWeight.bold,
         ),
       ),
       trailing: Checkbox(
         value: task.isDone,
         onChanged: toggleCheckbox,
+        activeColor: Colors.lightBlueAccent,
       ),
       onLongPress: onLongpress,
     );
